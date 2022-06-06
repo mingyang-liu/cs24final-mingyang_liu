@@ -1,7 +1,7 @@
 // bst.cpp
 // CS24 Final Exam
 // Implements class bst
-// YOUR NAME(S), DATE
+// Mingyang Liu, June 6th, 2022
 
 #include "bst.h"
 
