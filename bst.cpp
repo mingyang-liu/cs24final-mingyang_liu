@@ -28,10 +28,6 @@ void bst::clear(bstNode* n){
     if(n==nullptr)return;
     clear(n->left);
     clear(n->right);
-    if(n->parent){
-        if(n==n->parent->left){n->parent->left == nullptr;}
-        if(n==n->parent->right){n->parent->right == nullptr;}
-    }
     delete(n);
 }
 
