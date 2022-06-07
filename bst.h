@@ -68,6 +68,7 @@ class bst {
     
    
     //Add any new helper methods here
+    void clear(bstNode* n);
 
 };
 
