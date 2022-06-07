@@ -50,6 +50,23 @@ int main() {
         }
         cout<<endl;
     }
+    if(all || testnum == 6){
+        cout<<"Leaves: ";
+        cout<<bst1.countLeaves()<<endl;
+    }
+    if(all || testnum == 7){
+        cout<<"Parent 2 Children: ";
+        cout<<bst1.countParentsWithTwoChildren()<<endl;
+    }
+    if(all || testnum == 8){
+        vector<int> result;
+        cout<<"In order:";
+        bst1.outputInOrder(result);
+        for(auto i: result){
+            cout<<i<<" ";
+        }
+        cout<<endl;
+    }
 	
     return 0;
 }
@@ -67,7 +84,7 @@ int getTest() {
         int choice;
         cout << "Enter choice: ";
         cin >> choice;
-        if (choice >=0 && choice <= 5)
+        if (choice >=0 && choice <= 7)
             return choice;
         cout << "0, 1, 2, 3, 4, or 5 only!\n";
     } while (true);
