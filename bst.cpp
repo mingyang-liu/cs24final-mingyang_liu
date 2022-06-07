@@ -87,8 +87,8 @@ void bst::deleteSubtree(int key){
     }
 }
 int bst::countLeaves(bstNode *n) const{
-    if(n==nullptr){
-        return 0;
+    if(root==nullptr){
+        return -1;
     }
     if(n->left==nullptr&&n->right==nullptr){
         return 1;
@@ -108,6 +108,9 @@ int bst::countParentsWithTwoChildren(bstNode *n) const{
     }
 }
 int bst::height(bstNode *n) const{
+    if(root==nullptr){
+        return -1;
+    }
     if(n==nullptr){
         return 0;
     }
