@@ -11,8 +11,12 @@ using std::cout;
 
 
 bst::bst(vector<int>&v){
-    for(auto item:v){
-        insert(item);
+    if(v.empty()){
+        return;
+    }
+    root = new bstNode(v[0]);
+    for(int i=1; i<v.size(); i++){
+        insert(v[i]);
     }
 }
 
@@ -21,11 +25,13 @@ bst::~bst(){
 }
 
 void bst::clear(bstNode* n){
-    if(!n){
-        return;
-    }
+    if(n==nullptr)return;
     clear(n->left);
     clear(n->right);
+    if(n->parent){
+        if(n==n->parent->left){n->parent->left == nullptr;}
+        if(n==n->parent->right){n->parent->right == nullptr;}
+    }
     delete(n);
 }
 
@@ -73,11 +79,17 @@ bool bst::insert(int value, bstNode *n) {
 
 void bst::deleteSubtree(int key){
     bstNode* n = getNodeFor(key, root);
-    clear(n->left);
-    clear(n->right);
+    if(n==n->parent->left){
+        n->parent->left = nullptr;
+    } else if(n==n->parent->right){
+        n->parent->right = nullptr;
+    }
+    if(n!=nullptr){
+        clear(n);
+    }
 }
 int bst::countLeaves(bstNode *n) const{
-    if(!n){
+    if(n==nullptr){
         return 0;
     }
     if(n->left==nullptr&&n->right==nullptr){
@@ -88,7 +100,7 @@ int bst::countLeaves(bstNode *n) const{
     }
 }
 int bst::countParentsWithTwoChildren(bstNode *n) const{
-    if(!n){
+    if(n==nullptr){
         return 0;
     }
     if(n->left!=nullptr&&n->right!=nullptr){
@@ -98,7 +110,7 @@ int bst::countParentsWithTwoChildren(bstNode *n) const{
     }
 }
 int bst::height(bstNode *n) const{
-    if(!n){
+    if(n==nullptr){
         return 0;
     }
     if(n->left||n->right){
@@ -108,15 +120,16 @@ int bst::height(bstNode *n) const{
     }
 }
 void bst::outputPreOrder(bstNode *n, vector<int>& output) const{
-    if(!n){
+    if(n==nullptr){
         return;
     }
     output.push_back(n->info);
     outputPreOrder(n->left,output);
     outputPreOrder(n->right,output);
+
 }
 void bst::outputInOrder(bstNode *n, vector<int>& output) const{
-    if(!n){
+    if(n==nullptr){
         return;
     }
     outputPreOrder(n->left,output);
